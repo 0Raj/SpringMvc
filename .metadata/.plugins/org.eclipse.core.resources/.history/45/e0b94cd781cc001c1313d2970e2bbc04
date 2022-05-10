@@ -1,0 +1,40 @@
+package com.example.repositoryLayer;
+
+import java.util.List;
+
+import com.example.bean.Products;
+
+@org.springframework.stereotype.Repository
+public class Repository implements RepositoryInterface {
+
+	@Override
+	public List<Products> getAllProducts() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Products getProductByID(int productID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean addNewProduct(Products product) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean deleteProductByID(int productID) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean updateProductByID(int productID) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

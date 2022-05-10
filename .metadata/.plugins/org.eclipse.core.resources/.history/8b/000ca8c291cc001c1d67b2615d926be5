@@ -1,0 +1,5 @@
+package com.example.controlLayer;
+
+public interface ControlInterface {
+	
+}

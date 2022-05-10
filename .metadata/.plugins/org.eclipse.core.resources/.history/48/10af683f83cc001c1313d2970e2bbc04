@@ -1,0 +1,5 @@
+package com.example.serviceLayer;
+
+public interface ServiceInterface {
+
+}

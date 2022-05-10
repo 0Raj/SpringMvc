@@ -1,0 +1,8 @@
+package com.masai.bootPractice.util;
+
+public class Snippet {
+	public static void main(String[] args) {
+		addNewObject
+	}
+}
+

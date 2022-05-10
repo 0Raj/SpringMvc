@@ -1,0 +1,30 @@
+package com.example.controlLayer;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.bean.Products;
+import com.example.serviceLayer.ServiceLayer;
+
+@Controller
+@RestController
+public class ControlInterface {
+	
+	@Autowired
+	private ServiceLayer serviceLayer;
+	
+	@GetMapping(value="/getProducts")
+	public List<Products> getProducts(){
+		List<Products> productList = this.serviceLayer.getAllProducts();
+		
+		return productList;
+	}
+	
+	
+	
+}
