@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.masai.beanClass.Product;
+import com.masai.exception.ProductNotFoundException;
 import com.masai.service.ServiceLayer;
 
 @RestController
@@ -41,9 +42,9 @@ public class ControlLayer {
 	}
 	
 	@GetMapping(value = "/getProductsById")
-	public Product getProductsById(@RequestParam Integer productID) {
+	public Product getProductsById(@RequestParam Integer productID) throws ProductNotFoundException {
 		Product myProduct = null;
-		System.out.println(productID);
+		//System.out.println(productID);
 		myProduct = this.serviceLayer.getProductByID(productID);
 		
 		return myProduct;
@@ -51,7 +52,7 @@ public class ControlLayer {
 	}
 	
 	@DeleteMapping(value = "/deleteProduct")
-	public String deleteProduct(@RequestParam Integer productId){
+	public String deleteProduct(@RequestParam Integer productId) throws ProductNotFoundException{
 		
 		
 		

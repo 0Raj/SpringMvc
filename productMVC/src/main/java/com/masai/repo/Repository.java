@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import com.masai.beanClass.Product;
+import com.masai.exception.ProductNotFoundException;
 import com.masai.util.MyEntityManager;
 
 @org.springframework.stereotype.Repository
@@ -43,19 +44,26 @@ public class Repository implements RepositoryInter {
 	}
 
 	@Override
-	public Product getProductByID(int productID) {
+	public Product getProductByID(int productID) throws ProductNotFoundException{
 		Product myProduct = null;
 
 		EntityManager em = MyEntityManager.provideEntity();
 
 		myProduct = em.find(Product.class, productID);
+		
+		if(myProduct == null) {
+			throw new ProductNotFoundException("Given product Id not found");
+		}else {
+			em.close();
+			return myProduct;
+		}
 
-		em.close();
-		return myProduct;
+		
+		
 	}
 
 	@Override
-	public boolean deleteProductByID(int productID) {
+	public boolean deleteProductByID(int productID) throws ProductNotFoundException{
 		boolean status = true;
 
 		EntityManager em = MyEntityManager.provideEntity();
@@ -65,13 +73,17 @@ public class Repository implements RepositoryInter {
 			em.getTransaction().begin();
 			em.remove(product);
 			em.getTransaction().commit();
-		} else {
-			status = false;
+			
+			em.close();
+			
+			return status;
+		} else {	
+			throw new ProductNotFoundException("Given product Id not found");
 		}
 
-		em.close();
+		
 
-		return status;
+		
 	}
 
 	@Override

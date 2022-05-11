@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.masai.beanClass.Product;
+import com.masai.exception.ProductNotFoundException;
 import com.masai.repo.Repository;
 
 @Service
@@ -26,13 +27,13 @@ public class ServiceLayer implements ServiceInter{
 	}
 
 	@Override
-	public Product getProductByID(int productID) {
+	public Product getProductByID(int productID) throws ProductNotFoundException {
 		
 		return this.repository.getProductByID(productID);
 	}
 
 	@Override
-	public boolean deleteProductByID(int productID) {
+	public boolean deleteProductByID(int productID) throws ProductNotFoundException {
 		
 		return this.repository.deleteProductByID(productID);
 	}
